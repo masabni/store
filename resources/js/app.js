@@ -70,6 +70,38 @@ Vue.mixin({
         }
     }
 });
+Vue.directive("color", {
+    bind(el, bindings, vnode) {
+
+        if (bindings.modifiers['delay']) {
+            if (bindings.modifiers['blink']) {
+                setTimeout(() => {
+                    if (bindings.arg === "background") {
+                        setTimeout(() => {
+                            el.style.backgroundColor = bindings.value;
+                        }, 3000)
+                    } else {
+                        setTimeout(() => {
+                            el.style.color = bindings.value;
+                        }, 3000)
+                    }
+                });
+            } else {
+                if (bindings.arg === "background") {
+                    setTimeout(() => {
+                        el.style.backgroundColor = bindings.value;
+                    }, 3000)
+                } else {
+                    setTimeout(() => {
+                        el.style.color = bindings.value;
+                    }, 3000)
+                }
+
+            }
+        }
+        console.log(el, bindings.value, vnode)
+    }
+});
 const app = new Vue({
     el: '#app',
     store,

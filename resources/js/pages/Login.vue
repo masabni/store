@@ -37,7 +37,7 @@
             <v-flex xs12 sm8 md4>
                 <v-card class="elevation-12">
                     <v-toolbar color="white">
-                        <v-toolbar-title>{{$t('log_in_to_account')}}</v-toolbar-title>
+                        <v-toolbar-title v-color:background.blink.delay="'red'">{{$t('log_in_to_account')}}</v-toolbar-title>
                     </v-toolbar>
                     <v-card-text>
                         <v-form autocomplete="" @submit.prevent="login"
@@ -48,6 +48,7 @@
                                     :class="{ 'error--text': form.errors.has('email') }"
                                     class="primary--text"
                                     name="email"
+
                                     :label="$t('enter_email_phone')"
                                     data-vv-name="email"
                                     prepend-icon="email"
@@ -80,6 +81,7 @@
                         <v-layout wrap>
                             <v-flex xs12 sm6 md6>
                                 <v-btn
+
                                         block
                                         flat
                                         class="white--text"
@@ -89,7 +91,7 @@
                                     {{$t('new_sign_up')}}
                                 </v-btn>
                             </v-flex>
-                            <v-flex xs12 sm6 md6>
+                            <v-flex xs12 sm6 md6 >
                                 <v-btn
                                         block
                                         flat
