@@ -155,7 +155,7 @@
                                 :class="{ 'error--text': form.errors.has('description') }"
                                 :label="$t('product_description')"
                                 outline
-                                rows="8"
+                                rows="3"
                         ></v-textarea>
                     </v-flex>
                 </v-layout>

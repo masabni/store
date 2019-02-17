@@ -25,7 +25,7 @@ let mix = require('laravel-mix');
 //         ]
 //     }
 // })
-mix.js('resources/js/app.js', 'public/js').extract(["axios", "vue", "vuetify"]);
+mix.js('resources/js/app.js', 'public/js').extract(["axios", "vue", "vue-router", "vuetify","vue-i18n","vue-filepond"]);
 mix.sass('resources/sass/app.scss', 'public/css');
 if (mix.inProduction()) {
     mix.version();

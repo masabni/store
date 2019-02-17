@@ -30,10 +30,10 @@ const options = {
 };
 const nprogress = new NProgress('.nprogress-container');
 Vue.use(NProgress, options);
-// Vue.component("flash", require("./components/partials/Flash.vue"));
-Vue.component("flash", require("./Flash.vue"));
 Vue.component('NprogressContainer', NprogressContainer);
-Vue.component('confirm', require('./components/ConfirmDialogComponent.vue'));
+
+Vue.component("flash", () => import(/* webpackChunkName: "js/flash-component" */"./Flash.vue"));
+Vue.component('confirm', () => import(/* webpackChunkName: "js/confirm-dialog-component" */'./components/ConfirmDialogComponent.vue'));
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
@@ -70,7 +70,8 @@ Vue.mixin({
         }
     }
 });
-const app = new Vue({
+
+new Vue({
     el: '#app',
     store,
     router,

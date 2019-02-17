@@ -1,7 +1,8 @@
 import VueRouter from 'vue-router'
 
 // Pages
-import Home from './pages/Home.vue'
+// import Home from './pages/Home.vue'
+const Home = () => import(/* webpackChunkName: "js/home-component" */"./pages/Home.vue");
 import Register from './pages/Register.vue'
 import Login from './pages/Login.vue'
 import Dashboard from './pages/user/Dashboard.vue'
