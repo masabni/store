@@ -70,6 +70,9 @@ window.events = new Vue();
 window.flash = function(message, level = 'success', hideAfter = 5000, showResendEmailBtn = false) {
     window.events.$emit('flash', { message, level, hideAfter, showResendEmailBtn });
 };
+window.snackbar = function(message, level = 'success', hideAfter = 5000) {
+    window.events.$emit('snackbar', { message, level, hideAfter });
+};
 // try {
 //     window.$ = window.jQuery = require('jquery');
 //

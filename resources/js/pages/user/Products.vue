@@ -107,10 +107,10 @@
                 const index = this.products.indexOf(product);
                 this.$refs.confirm.open(this.$i18n.t('delete_product'), this.$i18n.t('are_you_sure'), {color: 'red'}).then(() => {
                     this.$http.delete('delete-product/', {params: {id: product.id}}).then((res) => {
-                        flash(res.data.msg);
+                        snackbar(res.data.msg);
                         this.products.splice(index, 1);
                     }).catch((error) => {
-                        flash(`${error.message}`, 'danger');
+                        snackbar(`${error.message}`, 'danger');
                     });
                 }).catch(() => {
                 });
@@ -120,7 +120,7 @@
             this.$http.get('products').then((res) => {
                 this.products = res.data
             }).catch(error => {
-                flash(error.message, 'error');
+                snackbar(error.message, 'error');
             });
         },
     }

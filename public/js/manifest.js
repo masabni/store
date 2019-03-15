@@ -91,7 +91,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({"0":"js/confirm-dialog-component","1":"js/flash-component","2":"js/home-component"}[chunkId]||chunkId) + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({"0":"js/flash-component","1":"js/tiptap-editor-component","2":"js/dialog-loader-component"}[chunkId]||chunkId) + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

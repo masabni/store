@@ -4,6 +4,7 @@
 
 // Variables
 @import 'variables';
+@import 'tiptap';
 
 // Bootstrap
 //@import '~bootstrap/scss/bootstrap';
@@ -136,4 +137,14 @@
 
 .old-price {
   text-decoration: line-through;
+}
+// to hide the spinner in number input field
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+// make phone number element always left to right
+input[name=phone_number] {
+  direction: ltr !important;
 }

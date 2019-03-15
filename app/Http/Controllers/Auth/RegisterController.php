@@ -86,7 +86,7 @@ class RegisterController extends Controller
                 'main_category_id' => $data['store']['main_category_id'],
                 'city_id' => $data['store']['city_id'],
                 'have_store' => $data['store']['have_store'],
-                'address' => $data['store']['address'],
+                'address' => $data['store']['have_store'] ? $data['store']['address'] : '',
                 'user_id' => $user['id']
             ]);
         return $user;

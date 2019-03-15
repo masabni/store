@@ -5,6 +5,7 @@
         <router-view name="header"></router-view>
         <v-content>
         <flash></flash>
+        <snackbar></snackbar>
             <!--<v-container fluid>-->
             <v-fade-transition mode="out-in">
                 <router-view></router-view>
