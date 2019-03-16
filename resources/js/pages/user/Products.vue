@@ -18,15 +18,14 @@
                                     slot-scope="{ hover }"
                                     :class="`elevation-${hover ? 12 : 2}`"
                             >
-                                <v-img
+                                <img
                                         :src="'storage/products/'+product.picture"
                                         height="125"
                                         contain
-                                >
-                                </v-img>
+                                />
                                 <v-card-title primary-title>
                                     <div>
-                                        <div class="headline" v-text="product.name"></div>
+                                        <router-link tag="div" class="headline" :to="{ name: 'single product', params: { id: product.id }}" v-text="product.name"></router-link>
                                         <span v-if="product.sale" class="old-price grey--text"
                                               v-text="formatPrice(product.price)"></span>
                                         <span v-text="formatPrice((product.price * ( (100 - product.sale) / 100 )))"></span>

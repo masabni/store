@@ -37,7 +37,7 @@
             <v-flex xs12 sm8 md4>
                 <v-card class="elevation-12">
                     <v-toolbar color="white">
-                        <v-toolbar-title v-color:background.blink.delay="'red'">{{$t('log_in_to_account')}}</v-toolbar-title>
+                        <v-toolbar-title>{{$t('log_in_to_account')}}</v-toolbar-title>
                     </v-toolbar>
                     <v-card-text>
                         <v-form autocomplete="" @submit.prevent="login"
@@ -97,7 +97,7 @@
                                         flat
                                         class="white--text"
                                         color="secondary"
-                                        tp="/reset"
+                                        to="/reset"
                                 >
                                     {{$t('forgot_your_password')}}
                                 </v-btn>

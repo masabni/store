@@ -19,7 +19,7 @@ Vue.use(VueRouter)
 
 // Set Vue authentication
 Vue.use(VueAxios, axios)
-axios.defaults.baseURL = `${process.env.MIX_APP_URL}/api`
+axios.defaults.baseURL = `api`
 Vue.use(VueAuth, auth)
 
 // Set Vue loader
@@ -30,10 +30,10 @@ const options = {
 };
 const nprogress = new NProgress('.nprogress-container');
 Vue.use(NProgress, options);
-// Vue.component("flash", require("./components/partials/Flash.vue"));
-Vue.component("flash", require("./Flash.vue"));
 Vue.component('NprogressContainer', NprogressContainer);
-Vue.component('confirm', require('./components/ConfirmDialogComponent.vue'));
+
+Vue.component("flash", () => import(/* webpackChunkName: "js/flash-component" */"./Flash.vue"));
+Vue.component('confirm', () => import(/* webpackChunkName: "js/confirm-dialog-component" */'./components/ConfirmDialogComponent.vue'));
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
@@ -70,38 +70,38 @@ Vue.mixin({
         }
     }
 });
-Vue.directive("color", {
-    bind(el, bindings, vnode) {
-
-        if (bindings.modifiers['delay']) {
-            if (bindings.modifiers['blink']) {
-                setTimeout(() => {
-                    if (bindings.arg === "background") {
-                        setTimeout(() => {
-                            el.style.backgroundColor = bindings.value;
-                        }, 3000)
-                    } else {
-                        setTimeout(() => {
-                            el.style.color = bindings.value;
-                        }, 3000)
-                    }
-                });
-            } else {
-                if (bindings.arg === "background") {
-                    setTimeout(() => {
-                        el.style.backgroundColor = bindings.value;
-                    }, 3000)
-                } else {
-                    setTimeout(() => {
-                        el.style.color = bindings.value;
-                    }, 3000)
-                }
-
-            }
-        }
-        console.log(el, bindings.value, vnode)
-    }
-});
+// Vue.directive("color", {
+//     bind(el, bindings, vnode) {
+//
+//         if (bindings.modifiers['delay']) {
+//             if (bindings.modifiers['blink']) {
+//                 setTimeout(() => {
+//                     if (bindings.arg === "background") {
+//                         setTimeout(() => {
+//                             el.style.backgroundColor = bindings.value;
+//                         }, 3000)
+//                     } else {
+//                         setTimeout(() => {
+//                             el.style.color = bindings.value;
+//                         }, 3000)
+//                     }
+//                 });
+//             } else {
+//                 if (bindings.arg === "background") {
+//                     setTimeout(() => {
+//                         el.style.backgroundColor = bindings.value;
+//                     }, 3000)
+//                 } else {
+//                     setTimeout(() => {
+//                         el.style.color = bindings.value;
+//                     }, 3000)
+//                 }
+//
+//             }
+//         }
+//         console.log(el, bindings.value, vnode)
+//     }
+// });
 const app = new Vue({
     el: '#app',
     store,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\Tag;
+use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Storage;
@@ -85,5 +86,11 @@ class ProductController extends Controller
     {
         $temp_file = $request->getContent();
         Storage::deleteDirectory("temp/products/$temp_file");
+    }
+
+    public function addCart(Product $id)
+    {
+        Cart::instance('shopping')->add($id->id,$id->name,\request()->get('qty'),$id->price);
+        return Cart::content();
     }
 }

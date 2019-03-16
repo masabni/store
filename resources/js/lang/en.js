@@ -424,4 +424,7 @@ export default {
     chat: 'Chat',
     stats: 'Stats',
     help: 'Help',
+    add_to_cart:'Add To Cart',
+    reviews:'Reviews',
+    quantity:'Quantity'
 }

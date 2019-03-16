@@ -1,11 +1,13 @@
 import VueRouter from 'vue-router'
 
 // Pages
-import Home from './pages/Home.vue'
+// import Home from './pages/Home.vue'
+const Home = () => import(/* webpackChunkName: "js/home-component" */"./pages/Home.vue");
 import Register from './pages/Register.vue'
 import Login from './pages/Login.vue'
 import Dashboard from './pages/user/Dashboard.vue'
 import Products from './pages/user/Products.vue'
+import SingleProduct from './pages/user/Product/Single.vue'
 import ProductCreate from './pages/user/Product/Create.vue'
 import ProductEdit from './pages/user/Product/Edit.vue'
 import AdminDashboard from './pages/admin/Dashboard.vue'
@@ -89,6 +91,16 @@ const routes = [
             auth: true
         },
         props: { default: true, header: false}
+    },
+    {
+        path: '/product/:id',
+        name: 'single product',
+        components: {
+            default: SingleProduct,
+        },
+        meta: {
+            auth: true
+        }
     },
     // ADMIN ROUTES
     {
