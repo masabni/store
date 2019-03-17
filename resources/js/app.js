@@ -12,7 +12,13 @@ import router from './router'
 import NProgress from 'vue-nprogress'
 import NprogressContainer from 'vue-nprogress/src/NprogressContainer';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
-
+import VeeValidate from 'vee-validate';
+// Vue.config.productionTip = false;
+// set VeeValidate
+Vue.use(VeeValidate, {
+    i18n,
+    i18nRootKey: 'validations', // customize the root path for validation messages.
+});
 // Set Vue router
 Vue.router = router
 Vue.use(VueRouter)
@@ -33,8 +39,13 @@ Vue.use(NProgress, options);
 Vue.component('NprogressContainer', NprogressContainer);
 
 Vue.component("flash", () => import(/* webpackChunkName: "js/flash-component" */"./Flash.vue"));
-Vue.component('confirm', () => import(/* webpackChunkName: "js/confirm-dialog-component" */'./components/ConfirmDialogComponent.vue'));
-
+Vue.component("snackbar", () => import(/* webpackChunkName: "js/flash-component" */"./components/Snackbar.vue"));
+// Vue.component('confirm', () => import(/* webpackChunkName: "js/confirm-dialog-component" */'./components/ConfirmDialogComponent.vue'));
+Vue.component('confirm', require('./components/ConfirmDialogComponent.vue'));
+Vue.component('tiptap_editor', () => import(/* webpackChunkName: "js/tiptap-editor-component" */'./components/TiptapEditor.vue'));
+Vue.component('multi_image_upload', () => import(/* webpackChunkName: "js/multi-image-upload-component" */'./components/MultiImageUpload.vue'));
+Vue.component('multi_image_upload', require('./components/MultiImageUpload.vue'));
+Vue.component('dialog_loader', () => import(/* webpackChunkName: "js/dialog-loader-component" */'./components/LoadingDialog.vue'));
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
     // Do something before request is sent
@@ -67,6 +78,17 @@ Vue.mixin({
     methods: {
         formatPrice(value) {
             return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        },
+        cartesianProduct(arr) {
+            return arr.reduce(function (a, b) {
+                return a.map(function (x) {
+                    return b.map(function (y) {
+                        return x.concat(y);
+                    })
+                }).reduce(function (a, b) {
+                    return a.concat(b)
+                }, [])
+            }, [[]])
         }
     }
 });

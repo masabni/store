@@ -1,37 +1,4 @@
 <template>
-    <!--<div class="container">-->
-    <!--<div class="card card-default">-->
-    <!--<div class="card-header">Login</div>-->
-
-    <!--<div class="card-body">-->
-    <!--<div class="alert alert-danger" v-if="has_error">-->
-    <!--<p v-text="error"></p>-->
-    <!--</div>-->
-    <!--<form autocomplete="" @submit.prevent="login" @keydown="form.errors.clear($event.target.name)">-->
-    <!--<div class="form-group" v-bind:class="{ 'has-error': form.errors.has('email') }">-->
-    <!--<label for="email">E-mail</label>-->
-    <!--<input type="text" id="email" class="form-control" placeholder="Enter your email or phone number..."-->
-    <!--name="email"-->
-    <!--v-model="form.email">-->
-    <!--<span class="help-block text-danger" v-if="form.errors.has('email')"-->
-    <!--v-text="form.errors.get('email')"></span>-->
-    <!--</div>-->
-    <!--<div class="form-group" v-bind:class="{ 'has-error': form.errors.has('password') }">-->
-    <!--<label for="password">Password</label>-->
-    <!--<input type="password" id="password" class="form-control" name="password"-->
-    <!--placeholder="Enter your password..." v-model="form.password">-->
-    <!--<span class="help-block text-danger" v-if="form.errors.has('password')"-->
-    <!--v-text="form.errors.get('password')"></span>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<input type="checkbox" id="remember" name="remember" v-model="remember">-->
-    <!--<label for="remember">Remember me</label>-->
-    <!--</div>-->
-    <!--<button type="submit" :class="[loading ? 'loading-btn' : '' ,'btn btn-primary']" :disabled="this.form.errors.any()">Login</button>-->
-    <!--</form>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
     <v-container fluid fill-height>
         <v-layout align-center justify-center>
             <v-flex xs12 sm8 md4>
@@ -40,12 +7,13 @@
                         <v-toolbar-title>{{$t('log_in_to_account')}}</v-toolbar-title>
                     </v-toolbar>
                     <v-card-text>
-                        <v-form autocomplete="" @submit.prevent="login"
+                        <v-form autocomplete="" @submit.prevent="submit"
                                 @keydown.native="form.errors.clear($event.target.name)">
                             <v-text-field
                                     v-model="form.email"
-                                    :error-messages="form.errors.get('email')"
-                                    :class="{ 'error--text': form.errors.has('email') }"
+                                    v-validate="'required'"
+                                    :error-messages="errors.first('email')"
+                                    :class="{ 'error--text': errors.has('email') }"
                                     class="primary--text"
                                     name="email"
 
@@ -55,21 +23,22 @@
                             ></v-text-field>
                             <v-text-field
                                     v-model="form.password"
+                                    v-validate="'required|min:6'"
                                     :append-icon="icon"
                                     :type="!password_visible ? 'password' : 'text'"
-                                    :error-messages="form.errors.get('password')"
-                                    :class="{ 'error--text': form.errors.has('password') }"
+                                    :error-messages="errors.first('password')"
+                                    :class="{ 'error--text': errors.has('password') }"
                                     class="primary--text"
                                     name="password"
                                     :label="$t('enter_your_password')"
-                                    hint="At least 6 characters"
+                                    hint="At least 6 characters" :hint="$t('at_least_characters', [6])"
                                     data-vv-name="password"
                                     prepend-icon="lock"
                                     @click:append="(password_visible = !password_visible)"
                             ></v-text-field>
                             <v-btn
                                     :loading="loading"
-                                    :disabled="this.form.errors.any()"
+                                    :disabled="!!errors.count()"
                                     block
                                     type="submit"
                                     color="primary"
@@ -134,6 +103,9 @@
             //
         },
         methods: {
+            submit() {
+                this.$validator.validateAll().then((result) => {if (result) this.login();});
+            },
             login() {
                 this.loading = true;
                 // get the redirect object
@@ -151,7 +123,7 @@
                             this.form.errors.record(res.response.data);
 //                        else
 //                            this.form.errors.record_error(res.response.data);
-                        flash(res.response.data.message,'error');
+                        snackbar(res.response.data.message,'error');
                         this.loading = false;
                     },
                     rememberMe: this.remember,

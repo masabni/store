@@ -25,12 +25,14 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
+            'category' => 'required',
             'price' => 'required|numeric',
-            'categories' => 'required',
+            'total_quantity' => 'required|numeric',
             'description' => 'required',
 //            'birth_location' => 'required|exists:gen_cities,id',
 //            'picture' => 'required|mimes:jpg,png,jpeg|max:5000',
-            'picture_id'=>(request('picture') == '')?'required':'',
+//            'picture_id'=>(request('pictures') == '')?'required':'',
+            'pictures'=>'required',
         ];
     }
 }
