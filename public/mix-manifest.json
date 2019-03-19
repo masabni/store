@@ -1,9 +1,11 @@
 {
-    "/js/flash-component.js": "/js/flash-component.js",
-    "/js/tiptap-editor-component.js": "/js/tiptap-editor-component.js",
-    "/js/dialog-loader-component.js": "/js/dialog-loader-component.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/vendor.js": "/js/vendor.js",
-    "/js/manifest.js": "/js/manifest.js"
+    "/js/confirm-dialog-component.js": "/js/confirm-dialog-component.js",
+    "/js/dialog-loader-component.js": "/js/dialog-loader-component.js",
+    "/js/flash-component.js": "/js/flash-component.js",
+    "/js/multi-image-upload-component.js": "/js/multi-image-upload-component.js",
+    "/js/tiptap-editor-component.js": "/js/tiptap-editor-component.js",
+    "/vendors~js/multi-image-upload-component.js": "/vendors~js/multi-image-upload-component.js",
+    "/vendors~js/tiptap-editor-component.js": "/vendors~js/tiptap-editor-component.js"
 }

@@ -16,6 +16,7 @@
                                     :class="{ 'error--text': errors.has('email') }"
                                     class="primary--text"
                                     name="email"
+
                                     :label="$t('enter_email_phone')"
                                     data-vv-name="email"
                                     prepend-icon="email"
@@ -49,6 +50,7 @@
                         <v-layout wrap>
                             <v-flex xs12 sm6 md6>
                                 <v-btn
+
                                         block
                                         flat
                                         class="white--text"
@@ -58,13 +60,13 @@
                                     {{$t('new_sign_up')}}
                                 </v-btn>
                             </v-flex>
-                            <v-flex xs12 sm6 md6>
+                            <v-flex xs12 sm6 md6 >
                                 <v-btn
                                         block
                                         flat
                                         class="white--text"
                                         color="secondary"
-                                        tp="/reset"
+                                        to="/reset"
                                 >
                                     {{$t('forgot_your_password')}}
                                 </v-btn>

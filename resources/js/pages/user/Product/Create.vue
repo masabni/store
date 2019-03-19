@@ -1,5 +1,6 @@
 <template>
     <modal-layout>
+
         <v-toolbar slot="toolbar" dark app color="primary">
             <v-btn
                     flat

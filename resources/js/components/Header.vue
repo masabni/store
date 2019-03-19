@@ -17,7 +17,6 @@
         <v-toolbar-title style="width: 300px" class="pb-1 hidden-xs-only" v-text="$t('ma5zan')">
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <!--<v-toolbar-items>-->
         <v-btn
                 v-if="!$auth.check()"
                 flat
@@ -74,45 +73,36 @@
                 </v-list-tile>
             </v-list>
         </v-menu>
-        <v-menu offset-y>
-            <v-btn
-                    slot="activator"
-                    flat
-                    dark
-            >
-                <v-avatar
-                        :tile="true"
-                        size="26"
+
+        <v-menu offset-y :offset-x="$i18n.locale === 'en'">
+            <template slot="activator">
+                <v-btn
+                        flat
+                        dark
                 >
-                    <img :src="$i18n.locale === 'ar'?'assets/ar.png':'https://cdn.vuetifyjs.com/images/flags/us.png'"
-                         alt="avatar">
-                </v-avatar>
-            </v-btn>
+                    <v-avatar
+                            :tile="true"
+                            size="26"
+                    >
+                        <img :src="$i18n.locale === 'ar'? lang_items.ar.image : lang_items.en.image"
+                             alt="avatar">
+                    </v-avatar>
+                </v-btn>
+            </template>
             <v-list>
-                <a hreflang="en" :href="'en'+current_route">
-                    <v-list-tile avatar>
-                        <v-list-tile-avatar :tile="true" size="26">
-                            <img src="https://cdn.vuetifyjs.com/images/flags/us.png" alt="English">
-                        </v-list-tile-avatar>
-                        <v-list-tile-content>
-                            <v-list-tile-title>English</v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                </a>
-                <a hreflang="ar" :href="'ar'+current_route">
-                    <v-list-tile avatar>
-                        <v-list-tile-avatar :tile="true" size="26">
-                            <img src="/assets/ar.png" alt="Arabic">
-                        </v-list-tile-avatar>
-                        <v-list-tile-content>
-                            <v-list-tile-title>العربية</v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                </a>
+                <v-list-tile avatar
+                             v-for="(item, index) in lang_items"
+                             :key="index"
+                             @click="$i18n.locale !== item.lang ? change_lang(item.lang):''"
+                >
+                    <v-list-tile-avatar :tile="true" size="26">
+                        <img :src="item.image" alt="English">
+                    </v-list-tile-avatar>
+                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                </v-list-tile>
             </v-list>
         </v-menu>
 
-        <!--</v-toolbar-items>-->
     </v-toolbar>
 
     <!--<nav id="nav">-->
@@ -149,6 +139,10 @@
         name: 'Header',
         data() {
             return {
+                lang_items: {
+                    ar: {title: 'العربية', lang: 'ar', image: '/assets/ar.png'},
+                    en: {title: 'English', lang: 'en', image: 'https://cdn.vuetifyjs.com/images/flags/us.png'}
+                },
                 logo: '/assets/vuetify.png',
                 extension: true,
                 title: 'Store',
@@ -185,6 +179,11 @@
         computed: {
             current_route() {
                 return this.$route.path
+            }
+        },
+        methods: {
+            change_lang(lang) {
+                window.location.href = lang + this.current_route;
             }
         },
         mounted() {

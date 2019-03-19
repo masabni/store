@@ -40,11 +40,11 @@ Vue.component('NprogressContainer', NprogressContainer);
 
 Vue.component("flash", () => import(/* webpackChunkName: "js/flash-component" */"./Flash.vue"));
 Vue.component("snackbar", () => import(/* webpackChunkName: "js/flash-component" */"./components/Snackbar.vue"));
-// Vue.component('confirm', () => import(/* webpackChunkName: "js/confirm-dialog-component" */'./components/ConfirmDialogComponent.vue'));
-Vue.component('confirm', require('./components/ConfirmDialogComponent.vue'));
+Vue.component('confirm', () => import(/* webpackChunkName: "js/confirm-dialog-component" */'./components/ConfirmDialogComponent.vue'));
+// Vue.component('confirm', require('./components/ConfirmDialogComponent.vue'));
 Vue.component('tiptap_editor', () => import(/* webpackChunkName: "js/tiptap-editor-component" */'./components/TiptapEditor.vue'));
 Vue.component('multi_image_upload', () => import(/* webpackChunkName: "js/multi-image-upload-component" */'./components/MultiImageUpload.vue'));
-Vue.component('multi_image_upload', require('./components/MultiImageUpload.vue'));
+// Vue.component('multi_image_upload', require('./components/MultiImageUpload.vue'));
 Vue.component('dialog_loader', () => import(/* webpackChunkName: "js/dialog-loader-component" */'./components/LoadingDialog.vue'));
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
@@ -92,8 +92,39 @@ Vue.mixin({
         }
     }
 });
-
-new Vue({
+// Vue.directive("color", {
+//     bind(el, bindings, vnode) {
+//
+//         if (bindings.modifiers['delay']) {
+//             if (bindings.modifiers['blink']) {
+//                 setTimeout(() => {
+//                     if (bindings.arg === "background") {
+//                         setTimeout(() => {
+//                             el.style.backgroundColor = bindings.value;
+//                         }, 3000)
+//                     } else {
+//                         setTimeout(() => {
+//                             el.style.color = bindings.value;
+//                         }, 3000)
+//                     }
+//                 });
+//             } else {
+//                 if (bindings.arg === "background") {
+//                     setTimeout(() => {
+//                         el.style.backgroundColor = bindings.value;
+//                     }, 3000)
+//                 } else {
+//                     setTimeout(() => {
+//                         el.style.color = bindings.value;
+//                     }, 3000)
+//                 }
+//
+//             }
+//         }
+//         console.log(el, bindings.value, vnode)
+//     }
+// });
+const app = new Vue({
     el: '#app',
     store,
     router,

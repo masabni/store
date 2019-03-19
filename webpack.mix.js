@@ -10,8 +10,6 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-// var tailwindcss = require('tailwindcss');
-//
 // mix.postCss('resources/css/main.css', 'public/css', [
 //     tailwindcss('./tailwind.js'),
 // ]);
@@ -25,8 +23,9 @@ let mix = require('laravel-mix');
 //         ]
 //     }
 // })
-mix.js('resources/js/app.js', 'public/js').extract(["axios", "vue", "vue-router", "vuetify","vue-i18n","vue-filepond"]);
 mix.sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/app.js', 'public/js');
+// .extract(["axios", "vue", "vue-router", "vuetify","vue-i18n","vue-filepond"])
 if (mix.inProduction()) {
     mix.version();
 }

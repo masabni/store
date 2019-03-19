@@ -286,5 +286,8 @@ export default {
     chat: 'المحادثة',
     stats: 'احصائيات',
     help: 'المساعدة',
+    add_to_cart:'إضافة إلى السلة',
+    reviews:'المراجعات',
+    quantity:'الكمية'
 }
 

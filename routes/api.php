@@ -25,4 +25,5 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::delete('product_upload_temp', 'ProductController@deleteTempPhoto');
     Route::post('save-product', 'ProductController@create');
     Route::delete('delete-product', 'ProductController@delete');
+    Route::post('add-cart/{id}','ProductController@addCart');
 });
