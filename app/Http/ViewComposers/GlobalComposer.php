@@ -55,7 +55,7 @@ class GlobalComposer
                 . ($lang == 'ar' ? '<script type="text/javascript" src="' . asset('admin/js/components/momentjs/ar.js') . '"></script><script>moment.locale("' . $lang . '");</script>' : ''),
             'ckeditor' => '<script type="text/javascript" src="' . asset('ckeditor/ckeditor.js') . '"></script>
                               <script type="text/javascript" src="' . asset('ckeditor/adapters/jquery.js') . '"></script>',
-            'gmap' => '<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDiOtpAB2_dbVXGHk612rD7zJFx8qwbmFc&libraries=places&language=' . $lang . '"></script>
+            'gmap' => '<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places&language=' . $lang . '"></script>
                               <script type="text/javascript" src="' . asset('general/js/jquery.gmap.js') . '"></script>',
             'calendario' => '<script type="text/javascript" src="' . asset('js/jquery.calendario.js') . '"></script>' . ($lang == 'ar' ? '<script type="text/javascript" src="' . asset('js/components/calendario/ar.js') . '"></script>' : ''),
             'cropper' => '<script type="text/javascript" src="' . asset('admin/js/components/cropper.min.js') . '"></script>',
